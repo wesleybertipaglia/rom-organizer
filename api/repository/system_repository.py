@@ -1,7 +1,6 @@
 from api.models.system import System
 from api.repository.base_repository import BaseRepository
 
-
 class SystemRepository(BaseRepository):
     table_name = 'system'
 
@@ -19,11 +18,11 @@ class SystemRepository(BaseRepository):
         return [self._row_to_model(row) for row in rows]
 
     def create(self, system: System):
-        data = {'name': system.name}
+        data = {'acron': system.acron, 'name': system.name}
         new_id = super().create(**data)
         system.id = new_id
         return new_id
 
     def update(self, system: System):
-        data = {'name': system.name}
+        data = {'acron': system.acron, 'name': system.name}
         return super().update(system.id, **data)
