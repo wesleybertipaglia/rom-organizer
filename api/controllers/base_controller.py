@@ -21,3 +21,6 @@ class BaseController:
 
     def import_from_csv(self, csv_path):
         return self.service.import_from_csv(csv_path)
+    
+    def delete_all(self):
+        return self.service.delete_all()

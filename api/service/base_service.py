@@ -50,3 +50,7 @@ class BaseService:
             "created": created,
             "errors": errors
         }
+    
+    def delete_all(self):
+        self.repo.delete_all()
+                

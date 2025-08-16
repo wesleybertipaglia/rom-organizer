@@ -24,7 +24,8 @@ class GameTitleApiCommand(Command):
             "3": "Create new",
             "4": "Update existing",
             "5": "Delete by ID",
-            "6": "Import from CSV"
+            "6": "Import from CSV",
+            "7": "Delete all"
         }
 
         print("\nAvailable actions:")
@@ -69,6 +70,10 @@ class GameTitleApiCommand(Command):
                 result = self.controller.import_from_csv(csv_path)
                 print("✅ Import result:", result)
 
+            elif choice == "7":
+                self.controller.delete_all()
+                print("✅ Deleted all GameTitles.")
+
             else:
                 print("❌ Invalid option selected.")
 
@@ -77,17 +82,13 @@ class GameTitleApiCommand(Command):
 
     def _prompt_game_title(self, id=None):
         """Prompt user to input fields for GameTitle creation or update."""
-        system_id = input("System ID: ").strip()
         genre_id = input("Genre ID: ").strip()
-        year = input("Year (optional): ").strip()
         title = input("Title: ").strip()
         synopsis = input("Synopsis (optional): ").strip()
 
         return GameTitle(
             id=id,
-            system_id=system_id or None,
             genre_id=genre_id or None,
-            year=year or None,
             title=title or None,
             synopsis=synopsis or None
         )

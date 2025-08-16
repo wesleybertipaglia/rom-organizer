@@ -25,7 +25,8 @@ class GameVersionCommand(Command):
             "3": "Create new",
             "4": "Update existing",
             "5": "Delete by ID",
-            "6": "Import from CSV"
+            "6": "Import from CSV",
+            "7": "Delete all"
         }
 
         print("\nAvailable actions:")
@@ -70,6 +71,10 @@ class GameVersionCommand(Command):
                 result = self.controller.import_from_csv(csv_path)
                 print("✅ Import result:", result)
 
+            elif choice == "7":
+                self.controller.delete_all()
+                print("✅ Deleted all Game Versions.")
+
             else:
                 print("❌ Invalid option selected.")
 
@@ -79,9 +84,11 @@ class GameVersionCommand(Command):
     def _prompt_game_version(self, id=None):
         print("Fill GameVersion fields:")
 
-        game_title_id = input("GameTitle ID: ").strip()
         signature = input("Signature: ").strip()
+        game_title_id = input("GameTitle ID: ").strip()
+        system_id = input("System ID: ").strip() or None
         region_id = input("Region ID: ").strip()
+        year = input("Year (optional): ").strip() or None
         languages = input("Languages (comma-separated): ").strip()        
         languages_list = [lang.strip() for lang in languages.split(",")] if languages else []        
         type_str = input(f"Type (options: {[v.name for v in VersionType]}): ").strip()
@@ -94,10 +101,12 @@ class GameVersionCommand(Command):
         title = input("Title (optional): ").strip() or None
 
         return GameVersion(
-            id=id,
-            game_title_id=game_title_id or None,
+            id=id,            
             signature=signature or None,
+            game_title_id=game_title_id or None,
+            system_id=system_id or None,
             region_id=region_id or None,
+            year=year or None,            
             languages=languages_list,
             type_=type_enum,
             title=title

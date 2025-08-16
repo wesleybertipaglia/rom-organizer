@@ -24,7 +24,8 @@ class GenreApiCommand(Command):
             "3": "Create new",
             "4": "Update existing",
             "5": "Delete by ID",
-            "6": "Import from CSV"
+            "6": "Import from CSV",
+            "7": "Delete all"
         }
 
         print("\nAvailable actions:")
@@ -68,6 +69,10 @@ class GenreApiCommand(Command):
                 csv_path = input("Enter CSV file path: ").strip()
                 result = self.controller.import_from_csv(csv_path)
                 print("✅ Import result:", result)
+
+            elif choice == "7":
+                self.controller.delete_all()
+                print("✅ Deleted all Genres.")
 
             else:
                 print("❌ Invalid option selected.")

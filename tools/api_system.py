@@ -24,7 +24,8 @@ class SystemApiCommand(Command):
             "3": "Create new",
             "4": "Update existing",
             "5": "Delete by ID",
-            "6": "Import from CSV"
+            "6": "Import from CSV",
+            "7": "Delete all"
         }
 
         print("\nAvailable actions:")
@@ -68,6 +69,10 @@ class SystemApiCommand(Command):
                 csv_path = input("Enter CSV file path: ").strip()
                 result = self.controller.import_from_csv(csv_path)
                 print("✅ Import result:", result)
+            
+            elif choice == "7":
+                self.controller.delete_all()
+                print("✅ Deleted all Systems.")
 
             else:
                 print("❌ Invalid option selected.")
@@ -77,9 +82,11 @@ class SystemApiCommand(Command):
 
     def _prompt_system(self, id=None):
         """Prompt user for System fields."""
+        acron = input("System acronym: ").strip()
         name = input("System name: ").strip()
 
         return System(
             id=id,
+            acron=acron or None,
             name=name or None
         )

@@ -61,3 +61,9 @@ class BaseRepository:
         with self._get_connection() as conn:
             conn.execute(f"DELETE FROM {self.table_name} WHERE id = ?", (id_,))
             conn.commit()
+
+    def delete_all(self):
+        with self._get_connection() as conn:
+            conn.execute(f"DELETE FROM {self.table_name}")
+            conn.commit()
+            
