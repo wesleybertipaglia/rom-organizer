@@ -1,18 +1,18 @@
 from cliengine.command import Command
-from api.controllers.game_title_controller import GameTitleController
-from api.models.game_title import GameTitle
-from api.repository.game_title_repository import GameTitleRepository
-from api.service.game_title_service import GameTitleService
+from api.controllers.genre_controller import GenreController
+from api.models.genre import Genre
+from api.repository.genre_repository import GenreRepository
+from api.service.genre_service import GenreService
 from cli.types import CommandType
 
-class GameTitleApiCommand(Command):
+class GenreApiCommand(Command):
     def __init__(self):
-        repo = GameTitleRepository()
-        service = GameTitleService(repo)
-        self.controller = GameTitleController(service)
+        repo = GenreRepository()
+        service = GenreService(repo)
+        self.controller = GenreController(service)
 
     def name(self) -> str:
-        return "Manage Game Titles"
+        return "Manage Genres"
 
     def type(self):
         return CommandType.API
@@ -37,7 +37,7 @@ class GameTitleApiCommand(Command):
             if choice == "1":
                 items = self.controller.list_all()
                 if not items:
-                    print("ℹ️  No game titles found.")
+                    print("ℹ️ No genres found.")
                 for item in items:
                     print(item.__dict__)
 
@@ -47,22 +47,22 @@ class GameTitleApiCommand(Command):
                 print(result)
 
             elif choice == "3":
-                game_title = self._prompt_game_title()
-                game_title.validate()
-                created = self.controller.create(game_title)
+                genre = self._prompt_genre()
+                genre.validate()
+                created = self.controller.create(genre)
                 print("✅ Created:", created)
 
             elif choice == "4":
                 id_ = input("Enter ID to update: ").strip()
-                game_title = self._prompt_game_title(id=id_)
-                game_title.validate()
-                updated = self.controller.update(id_, game_title)
+                genre = self._prompt_genre(id=id_)
+                genre.validate()
+                updated = self.controller.update(id_, genre)
                 print("✅ Updated:", updated)
 
             elif choice == "5":
                 id_ = input("Enter ID to delete: ").strip()
                 self.controller.delete(id_)
-                print(f"✅ Deleted GameTitle with ID {id_}")
+                print(f"✅ Deleted Genre with ID {id_}")
 
             elif choice == "6":
                 csv_path = input("Enter CSV file path: ").strip()
@@ -75,19 +75,11 @@ class GameTitleApiCommand(Command):
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def _prompt_game_title(self, id=None):
-        """Prompt user to input fields for GameTitle creation or update."""
-        system_id = input("System ID: ").strip()
-        genre_id = input("Genre ID: ").strip()
-        year = input("Year (optional): ").strip()
-        title = input("Title: ").strip()
-        synopsis = input("Synopsis (optional): ").strip()
+    def _prompt_genre(self, id=None):
+        """Prompt user for Genre fields."""
+        name = input("Genre name: ").strip()
 
-        return GameTitle(
+        return Genre(
             id=id,
-            system_id=system_id or None,
-            genre_id=genre_id or None,
-            year=year or None,
-            title=title or None,
-            synopsis=synopsis or None
+            name=name or None
         )
