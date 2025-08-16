@@ -19,8 +19,6 @@ class GameTitleRepository(BaseRepository):
 
     def create(self, game_title: GameTitle):
         data = {
-            'system_id': game_title.system_id,
-            'year': game_title.year,
             'title': game_title.title,
             'synopsis': game_title.synopsis,
             'genre_id': game_title.genre_id,
@@ -31,8 +29,6 @@ class GameTitleRepository(BaseRepository):
 
     def update(self, game_title: GameTitle):
         data = {
-            'system_id': game_title.system_id,
-            'year': game_title.year,
             'title': game_title.title,
             'synopsis': game_title.synopsis,
             'genre_id': game_title.genre_id,

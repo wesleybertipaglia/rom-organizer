@@ -19,9 +19,11 @@ class GameVersionRepository(BaseRepository):
 
     def create(self, game_version: GameVersion):
         data = {
-            'game_title_id': game_version.game_title_id,
             'signature': game_version.signature,
+            'game_title_id': game_version.game_title_id,
+            'system_id': game_version.system_id,
             'region_id': game_version.region_id,
+            'year': game_version.year,
             'languages': game_version.languages,
             'type': game_version.type,
             'title': game_version.title,
@@ -32,9 +34,11 @@ class GameVersionRepository(BaseRepository):
 
     def update(self, game_version: GameVersion):
         data = {
-            'game_title_id': game_version.game_title_id,
             'signature': game_version.signature,
+            'game_title_id': game_version.game_title_id,
+            'system_id': game_version.system_id,
             'region_id': game_version.region_id,
+            'year': game_version.year,
             'languages': game_version.languages,
             'type': game_version.type,
             'title': game_version.title,

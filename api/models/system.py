@@ -12,8 +12,8 @@ class System(Base):
     def validate(self):
         if not self.acron:
             raise ValueError("Acron is required")
-        if len(self.acron) > 10:
-            raise ValueError("Acron must be 10 characters or less")
+        if len(self.acron) > 20:
+            raise ValueError("Acron must be 20 characters or less")
         if not self.name:
             raise ValueError("Name is required")
         if len(self.name) > 100:
