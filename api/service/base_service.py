@@ -16,14 +16,12 @@ class BaseService:
 
     def create(self, data: Base):
         data.validate()
-        data_dict = data.__dict__.copy()
-        return self.repo.create(**data_dict)
+        return self.repo.create(data)
 
     def update(self, id_, data: Base):
         self.get_by_id(id_)
         data.validate()
-        data_dict = data.__dict__.copy()
-        return self.repo.update(id_, **data_dict)
+        return self.repo.update(id_, data)
 
     def delete(self, id_):
         self.get_by_id(id_)

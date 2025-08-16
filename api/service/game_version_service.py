@@ -5,16 +5,14 @@ from api.models.game_version import GameVersion
 class GameVersionService(BaseService):
     def create(self, data: GameVersion):
         data.validate()
-        data_dict = data.__dict__.copy()
-        data_dict['type'] = data.type.name
-        return self.repo.create(**data_dict)
+        data.type = data.type.name
+        return self.repo.create(data)
 
     def update(self, data: GameVersion):
         self.get_by_id(data.id)
         data.validate()
-        data_dict = data.__dict__.copy()
-        data_dict['type'] = data.type.name
-        return self.repo.update(data.id, **data_dict)
+        data.type = data.type.name
+        return self.repo.update(data.id, data)
 
     def import_from_csv(self, csv_path):
         created = 0

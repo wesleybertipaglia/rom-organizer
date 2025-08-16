@@ -5,13 +5,11 @@ from api.models.game_title import GameTitle
 class GameTitleService(BaseService):
     def create(self, data: GameTitle):
         data.validate()
-        data_dict = data.__dict__.copy()
-        return self.repo.create(**data_dict)
+        return self.repo.create(data)
 
     def update(self, data: GameTitle):
         data.validate()
-        data_dict = data.__dict__.copy()
-        return self.repo.update(data.id, **data_dict)
+        return self.repo.update(data.id, data)
 
     def import_from_csv(self, csv_path):
         created = 0

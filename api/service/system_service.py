@@ -5,14 +5,12 @@ from api.models.system import System
 class SystemService(BaseService):
     def create(self, data: System):
         data.validate()
-        data_dict = data.__dict__.copy()
-        return self.repo.create(**data_dict)
+        return self.repo.create(data)
 
     def update(self, data: System):
         self.get_by_id(data.id)
         data.validate()
-        data_dict = data.__dict__.copy()
-        return self.repo.update(data.id, **data_dict)
+        return self.repo.update(data.id, data)
 
     def import_from_csv(self, csv_path):
         created = 0
