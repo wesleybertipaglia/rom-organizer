@@ -22,7 +22,7 @@ Make sure Python 3.x is installed:
 
 ```bash
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate    
 ```
 
 ### Install required packages:

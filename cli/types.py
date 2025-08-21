@@ -6,5 +6,5 @@ class CommandType(Enum):
     RENAMER = auto()
     CLEANER = auto()
     COMPRESSOR = auto()
-    ART = auto()
-    API = auto()
+    IMAGES = auto()
+    GAMELIST = auto()

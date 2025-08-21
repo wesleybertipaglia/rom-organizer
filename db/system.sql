@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS system (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    acron TEXT UNIQUE NOT NULL,
-    name TEXT UNIQUE NOT NULL,
-    created_at TEXT NOT NULL,
-    updated_at TEXT NOT NULL
-);
