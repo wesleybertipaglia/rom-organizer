@@ -4,6 +4,7 @@ from cli.types import CommandType
 import os
 import zlib
 import xml.etree.ElementTree as ET
+from cli.dat import choose_dat_file
 
 class CheckMissingRomsCommand(Command):
     def __init__(self):
@@ -16,7 +17,10 @@ class CheckMissingRomsCommand(Command):
         return CommandType.GAMELIST
 
     def run(self, *args, **kwargs):
-        dat_file = input("📄 Enter path to DAT file: ").strip()
+        dat_file = choose_dat_file()
+        if not dat_file:
+            return
+
         roms_folder = input("📁 Enter path to ROMs folder: ").strip()
         missing_file = input("📝 Enter path to save missing list (e.g., faltando.txt): ").strip()
 
