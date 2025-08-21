@@ -8,7 +8,8 @@ dat_files = {
         "GBC - Game Boy Color": "./data/nintendo/gbc.dat",
         "GBA - Game Boy Advance": "./data/nintendo/gba.dat",
         "N64 - Nintendo 64": "./data/nintendo/n64.dat",
-        "NDS - Nintendo DS": "./data/nintendo/nds.dat"
+        "NDS - Nintendo DS": "./data/nintendo/nds.dat",
+        "VB - Virtual Boy": "./data/nintendo/vb.dat"
     },
     "Sega": {
         "SG-1000": "./data/sega/sg1000.dat",
