@@ -14,12 +14,17 @@ dat_files = {
     "Sega": {
         "SG-1000": "./data/sega/sg1000.dat",
         "Master System": "./data/sega/master_system.dat",
-        "Genesis": "./data/sega/genesis.dat",
-        "Mega Drive": "./data/sega/mega_drive.dat",
+        "Genesis / Mega Drive": "./data/sega/genesis.dat",
         "Game Gear": "./data/sega/game_gear.dat",
         "Sega CD": "./data/sega/sega_cd.dat",
         "32X": "./data/sega/32x.dat",
         "Saturn": "./data/sega/saturn.dat",
+    },
+    "SNK": {
+        "Neo Geo": "./data/snk/neogeo.dat",
+        "Neo Geo CD": "./data/snk/neogeo_cd.dat",
+        "NGP - Neo Geo Pocket": "./data/snk/ngp.dat",
+        "NGPC - Neo Geo Pocket Color": "./data/snk/ngpc.dat"
     },
     "Sony": {
         "PS1 - PlayStation 1": "./data/sony/ps1.dat",
@@ -34,43 +39,33 @@ dat_files = {
         "Atari Lynx": "./data/atari/lynx.dat",
         "Atari ST": "./data/atari/st.dat"
     },
-    "NEC": {
-        "PC Engine / TurboGrafx-16": "./data/nec/pc_engine.dat",
-        "PC Engine CD / TurboGrafx-CD": "./data/nec/pc_engine_cd.dat",
-        "SuperGrafx": "./data/nec/supergrafx.dat"
+    "PC": {
+        "PC Engine / TurboGrafx-16": "./data/pc/pc_engine.dat",
+        "PC Engine CD / TurboGrafx-CD": "./data/pc/pc_engine_cd.dat",
+        "SuperGrafx": "./data/pc/supergrafx.dat",
+        "Commodore 64": "./data/pc/c64.dat",
+        "Commodore VIC-20": "./data/pc/vic20.dat",
+        "Commodore Amiga": "./data/pc/amiga.dat",
+        "Apple I": "./data/pc/apple1.dat",
+        "Apple II": "./data/pc/apple2.dat",
+        "Apple II GS": "./data/pc/apple2gs.dat",
+        "MSX": "./data/pc/msx.dat",
+        "MSX2": "./data/pc/msx2.dat",
+        "ZX Spectrum": "./data/pc/zx_spectrum.dat",
+        "Amstrad CPC": "./data/pc/amstrad/cpc.dat"
     },
-    "Commodore": {
-        "Commodore 64": "./data/commodore/c64.dat",
-        "Commodore VIC-20": "./data/commodore/vic20.dat",
-        "Commodore Amiga": "./data/commodore/amiga.dat"
-    },
-    "Amstrad": {
-        "Amstrad CPC": "./data/amstrad/cpc.dat"
-    },
-    "Apple": {
-        "Apple II": "./data/apple/apple2.dat"
-    },
-    "Arcade": {
-        "MAME": "./data/arcade/mame.dat",
-        "CPS1 - Capcom Play System 1": "./data/arcade/cps1.dat",
-        "CPS2 - Capcom Play System 2": "./data/arcade/cps2.dat",
-        "CPS3 - Capcom Play System 3": "./data/arcade/cps3.dat",
-        "Neo Geo": "./data/arcade/neogeo.dat"
-    },
-    "Others": {
-        "MSX": "./data/others/msx.dat",
-        "MSX2": "./data/others/msx2.dat",
-        "ZX Spectrum": "./data/others/zx_spectrum.dat",
+    "Others": {                
         "WonderSwan": "./data/others/wonderswan.dat",
         "WonderSwan Color": "./data/others/wonderswan_color.dat",
         "3DO": "./data/others/3do.dat",
         "ColecoVision": "./data/others/colecovision.dat",
-        "Intellivision": "./data/others/intellivision.dat"
+        "Intellivision": "./data/others/intellivision.dat",
+        "Arduboy": "./data/others/arduboy.dat"
     }
 }
 
 def choose_dat_file():
-    print("🎮 Choose a brand:")
+    print("🎮 Choose a type:")
     brands = list(dat_files.keys())
     for idx, brand in enumerate(brands, start=1):
         print(f"{idx} - {brand}")
