@@ -1,14 +1,14 @@
 from cliengine.command import Command
 from cli.types import CommandType
 from cli.dat import choose_dat_file
-from api.rom_renamer import RomRenamer
+from api.game_renamer import RomRenamer
 
 class CorrectRomsNamesByDatCommand(Command):
     def name(self) -> str:
         return "Correct ROMs Names using DAT file (Copy to _corrected folder)"
 
     def type(self):
-        return CommandType.RENAMER
+        return CommandType.GAME
 
     def run(self, *args, **kwargs):
         dat_file = choose_dat_file()

@@ -1,14 +1,14 @@
 from cliengine.command import Command
 from cli.types import CommandType
 from cli.dat import choose_dat_file
-from api.missing_roms_checker import MissingRomsChecker
+from api.game_missing import MissingRomsChecker
 
 class CheckMissingRomsCommand(Command):
     def name(self) -> str:
         return "Check Missing ROMs from DAT"
 
     def type(self):
-        return CommandType.GAMELIST
+        return CommandType.GAME
 
     def run(self, *args, **kwargs):
         dat_file = choose_dat_file()
