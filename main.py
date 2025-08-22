@@ -1,5 +1,5 @@
 from cliengine.runner import run_cli
-from cli.types import CommandType
+from api.command_type import CommandType
 from cliengine.loader import load_commands_from
 
 load_commands_from("tools")

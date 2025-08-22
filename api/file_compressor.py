@@ -2,8 +2,10 @@ import os
 import zipfile
 
 class FileCompressor:
-    def __init__(self, path: str):
+    def __init__(self, path: str, delete_originals: bool = True, ignore_exts: list[str] = None): # type: ignore
         self.path = os.path.normpath(path)
+        self.delete_originals = delete_originals
+        self.ignore_exts = ignore_exts or [".zip", ".rar", ".7z", ".txt", ".xml", ".log", ".bak", ".html", ".json"]
         self.compressed_files = []
 
     def compress(self) -> dict:
@@ -35,6 +37,9 @@ class FileCompressor:
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
             zipf.write(file_path, arcname=file_name)
 
+        if self.delete_originals:
+            os.remove(file_path)
+
         self.compressed_files.append(zip_path)
         return zip_path
 
@@ -45,6 +50,10 @@ class FileCompressor:
 
         for item in items:
             item_path = os.path.join(folder_path, item)
+        
+            if any(item.lower().endswith(ext) for ext in self.ignore_exts):
+                continue
+
             zip_name = os.path.splitext(item)[0] + ".zip"
             zip_path = os.path.join(folder_path, zip_name)
 
@@ -57,6 +66,15 @@ class FileCompressor:
                         arcname = os.path.join(item, sub_item)
                         if os.path.isfile(sub_item_path):
                             zipf.write(sub_item_path, arcname=arcname)
+
+            if self.delete_originals:
+                if os.path.isfile(item_path):
+                    os.remove(item_path)
+                elif os.path.isdir(item_path):
+                    try:
+                        os.rmdir(item_path)
+                    except OSError:
+                        pass
 
             self.compressed_files.append(zip_path)
 

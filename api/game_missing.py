@@ -2,12 +2,11 @@ import os
 import zlib
 import xml.etree.ElementTree as ET
 
-
 class MissingRomsChecker:
     def __init__(self, dat_file: str, roms_folder: str, output_file: str = None): # type: ignore
         self.dat_file = dat_file
         self.roms_folder = roms_folder
-        self.output_file = output_file or f"{roms_folder.rstrip('/\\')}_missing.txt"
+        self.output_file = output_file or os.path.join(roms_folder, "_missing.txt")
         self.expected_roms = {}
         self.found_crcs = set()
         self.missing_roms = {}
@@ -51,7 +50,7 @@ class MissingRomsChecker:
 
     def _write_output(self):
         with open(self.output_file, "w", encoding="utf-8") as f:
-            f.write("Jogos faltando:\n\n")
+            f.write("Games missing:\n\n")
             for name in self.missing_roms.values():
                 f.write(f"{name}\n")
 

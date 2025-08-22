@@ -1,6 +1,6 @@
 from cliengine.command import Command
-from cli.types import CommandType
-from cli.dat import choose_dat_file
+from api.command_type import CommandType
+from api.dat_loader import choose_dat_file
 from api.game_renamer import RomRenamer
 
 class CorrectRomsNamesByDatCommand(Command):

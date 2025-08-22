@@ -1,5 +1,5 @@
 from cliengine.command import Command
-from cli.types import CommandType
+from api.command_type import CommandType
 from api.file_compressor import FileCompressor
 
 class FileCompressCommand(Command):

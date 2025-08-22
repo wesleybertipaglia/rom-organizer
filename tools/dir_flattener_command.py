@@ -1,5 +1,5 @@
 from cliengine.command import Command
-from cli.types import CommandType
+from api.command_type import CommandType
 from api.dir_flattener import DirectoryFlattener
 
 class FlattenDirectoryCommand(Command):
