@@ -7,7 +7,13 @@ class MissingRomsChecker:
     def __init__(self, dat_file: str, roms_folder: str, output_file: str = None): # type: ignore
         self.dat_file = dat_file
         self.roms_folder = roms_folder
-        self.output_file = output_file or os.path.join(roms_folder, "_missing.txt")
+
+        default_name = "missing.md"
+        if output_file:
+            self.output_file = output_file.replace("_", "", 1).replace(".txt", ".md")
+        else:
+            self.output_file = os.path.join(roms_folder, default_name)
+
         self.expected_roms = {}
         self.found_crcs = set()
         self.missing_roms = {}
@@ -55,14 +61,53 @@ class MissingRomsChecker:
             except Exception:
                 pass
 
-
     def _find_missing(self):
         self.missing_roms = {
             crc: name for crc, name in self.expected_roms.items() if crc not in self.found_crcs
         }
 
+    def _classify_by_region(self, games):
+        regions = {
+            "World": [],
+            "USA": [],
+            "Europe": [],
+            "Japan": [],
+            "Taiwan": [],
+            "Hong Kong": [],
+            "Korea": [],
+            "Asia": [],
+            "China": [],
+            "Others": []
+        }
+
+        for game in games:
+            name_lower = game.lower()
+
+            if "usa" in name_lower:
+                regions["USA"].append(game)
+            elif "europe" in name_lower or "eur" in name_lower:
+                regions["Europe"].append(game)
+            elif "japan" in name_lower or "jpn" in name_lower:
+                regions["Japan"].append(game)
+            elif "world" in name_lower:
+                regions["World"].append(game)
+            elif "asia" in name_lower:
+                regions["Asia"].append(game)
+            elif "taiwan" in name_lower:
+                regions["Taiwan"].append(game)
+            elif "hong kong" in name_lower:
+                regions["Hong Kong"].append(game)
+            elif "korea" in name_lower:
+                regions["Korea"].append(game)
+            elif "china" in name_lower:
+                regions["China"].append(game)
+            else:
+                regions["Others"].append(game)
+
+        return regions
+
     def _write_output(self):
-        subset_tags = ["proto", "beta", "demo", "aftermarket", "rev", "v", "progam"]
+        subset_tags = ["proto", "beta", "demo", "aftermarket", "rev", "v", "program"]
 
         main_set = []
         sub_sets = []
@@ -73,20 +118,34 @@ class MissingRomsChecker:
             else:
                 main_set.append(name)
 
+        main_by_region = self._classify_by_region(main_set)
+        subs_by_region = self._classify_by_region(sub_sets)
+
+        region_order = [
+            "World", "USA", "Europe", "Japan", "Brazil", "Asia", "Taiwan", "Hong Kong",
+            "Korea", "China", "Australia", "Russia", "Others"
+        ]
+
         with open(self.output_file, "w", encoding="utf-8") as f:
-            f.write("Games missing:\n")
+            f.write("# Missing Games\n\n")
 
-            if main_set:
-                f.write("\n-- main set --\n")
-                for game in main_set:
-                    f.write(f"{game}\n")
-                f.write("\n")
+            f.write("## Main Sets\n")
+            for region in region_order:
+                games = main_by_region.get(region, [])
+                if games:
+                    f.write(f"### {region}\n")
+                    for game in sorted(games):
+                        f.write(f"- {game}\n")
+                    f.write("\n")
 
-            if sub_sets:
-                f.write("\n-- sub sets --\n")
-                for game in sub_sets:
-                    f.write(f"{game}\n")
-                f.write("\n")
+            f.write("## Sub Sets\n")
+            for region in region_order:
+                games = subs_by_region.get(region, [])
+                if games:
+                    f.write(f"### {region}\n")
+                    for game in sorted(games):
+                        f.write(f"- {game}\n")
+                    f.write("\n")
 
     def run(self) -> dict:
         self._validate_paths()
