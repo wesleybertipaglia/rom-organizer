@@ -38,7 +38,19 @@ class DirectoryFlattener:
                 self.move_log.append((index, file, dst))
                 index += 1
 
+        self.remove_empty_dirs(self.root_dir)
+
         return {
             "files_moved": self.files_moved,
             "move_log": self.move_log
         }
+    
+    @staticmethod
+    def remove_empty_dirs(root_dir):
+        for dirpath, dirnames, filenames in os.walk(root_dir, topdown=False):
+            if not dirnames and not filenames:
+                try:
+                    os.rmdir(dirpath)
+                    print(f"Removed empty folder: {dirpath}")
+                except OSError:
+                    pass
