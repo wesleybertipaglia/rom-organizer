@@ -49,10 +49,31 @@ class MissingRomsChecker:
         }
 
     def _write_output(self):
+        subset_tags = ["proto", "beta", "demo", "aftermarket", "rev", "v", "progam"]
+
+        main_set = []
+        sub_sets = []
+
+        for name in self.missing_roms.values():
+            if any(tag in name.lower() for tag in subset_tags):
+                sub_sets.append(name)
+            else:
+                main_set.append(name)
+
         with open(self.output_file, "w", encoding="utf-8") as f:
-            f.write("Games missing:\n\n")
-            for name in self.missing_roms.values():
-                f.write(f"{name}\n")
+            f.write("Games missing:\n")
+
+            if main_set:
+                f.write("\n-- main set --\n")
+                for game in main_set:
+                    f.write(f"{game}\n")
+                f.write("\n")
+
+            if sub_sets:
+                f.write("\n-- sub sets --\n")
+                for game in sub_sets:
+                    f.write(f"{game}\n")
+                f.write("\n")
 
     def run(self) -> dict:
         self._validate_paths()
