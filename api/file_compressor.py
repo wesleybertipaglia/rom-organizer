@@ -51,7 +51,12 @@ class FileCompressor:
         for item in items:
             item_path = os.path.join(folder_path, item)
         
-            if any(item.lower().endswith(ext) for ext in self.ignore_exts):
+            item_lower = item.lower()
+
+            if item_lower == "missing.md":
+                continue
+
+            if any(item_lower.endswith(ext) for ext in self.ignore_exts):
                 continue
 
             zip_name = os.path.splitext(item)[0] + ".zip"
