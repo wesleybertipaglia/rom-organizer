@@ -1,5 +1,6 @@
 import os
 import zlib
+import zipfile
 import xml.etree.ElementTree as ET
 
 class MissingRomsChecker:
@@ -36,12 +37,24 @@ class MissingRomsChecker:
     def _scan_roms(self):
         for filename in os.listdir(self.roms_folder):
             filepath = os.path.join(self.roms_folder, filename)
-            if os.path.isfile(filepath):
-                try:
+
+            if not os.path.isfile(filepath):
+                continue
+
+            try:
+                if filename.lower().endswith(".zip"):
+                    with zipfile.ZipFile(filepath, 'r') as zipf:
+                        for zipinfo in zipf.infolist():
+                            with zipf.open(zipinfo) as file:
+                                data = file.read()
+                                crc = f"{zlib.crc32(data) & 0xffffffff:08x}"
+                                self.found_crcs.add(crc)
+                else:
                     crc = self._calc_crc32(filepath)
                     self.found_crcs.add(crc)
-                except Exception:
-                    pass
+            except Exception:
+                pass
+
 
     def _find_missing(self):
         self.missing_roms = {
