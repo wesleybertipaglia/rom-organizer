@@ -72,6 +72,8 @@ class RomRenamer:
                 copied += 1
             else:
                 unmatched += 1
+                # if self.in_place:
+                #     os.remove(filepath)
 
         return {
             "copied": copied,

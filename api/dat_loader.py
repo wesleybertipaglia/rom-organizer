@@ -39,11 +39,14 @@ dat_files = {
         "TurboGrafx-16 - PC Engine TurboGrafx-16": "./data/pc/nec_turbografx.dat",
         "SuperGrafx - PC Engine SuperGrafx": "./data/pc/nec_supergrafx.dat",
         "PC-88 - NEC PC-88": "./data/pc/nec_pc88.dat",
-        "PC-98 - NEC PC-98": "./data/pc/nec_pc98.dat"
+        "PC-98 - NEC PC-98": "./data/pc/nec_pc98.dat",
+        "MSX - Microsoft MSX": "./data/pc/microsoft_msx.dat",
+        "MSX2 - Microsoft MSX2": "./data/pc/microsoft_msx2.dat"
     },
     "Others": {
         "Arduboy": "./data/others/arduboy.dat",
-        "J2ME - Java 2 Micro Edition": "./data/others/j2me.dat"
+        "J2ME - Java 2 Micro Edition": "./data/others/j2me.dat",
+        "Coleco": "./data/others/coleco.dat"
     }
 }
 
