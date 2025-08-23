@@ -22,11 +22,6 @@ dat_files = {
         "NGP - Neo Geo Pocket": "./data/snk/ngp.dat",
         "NGPC - Neo Geo Pocket Color": "./data/snk/ngpc.dat"
     },
-    "Sony": {
-        "PS1 - PlayStation 1": "./data/sony/ps1.dat",
-        "PS2 - PlayStation 2": "./data/sony/ps2.dat",
-        "PSP - PlayStation Portable": "./data/sony/psp.dat",
-    },
     "Atari": {
         "2600": "./data/atari/2600.dat",
         "5200": "./data/atari/5200.dat",
@@ -37,10 +32,18 @@ dat_files = {
         "Atari Jaguar": "./data/atari/jaguar.dat"
     },
     "PC": {
-        "Apple II": "./data/pc/apple2.dat"
+        "Apple II": "./data/pc/apple_2.dat",
+        "Amiga - Commodore Amiga": "./data/pc/commodore_amiga.dat",
+        "C64 - Commodore 64": "./data/pc/commodore_64.dat",
+        "VIC-20 - Commodore VIC-20": "./data/pc/commodore_vic20.dat",
+        "TurboGrafx-16 - PC Engine TurboGrafx-16": "./data/pc/nec_turbografx.dat",
+        "SuperGrafx - PC Engine SuperGrafx": "./data/pc/nec_supergrafx.dat",
+        "PC-88 - NEC PC-88": "./data/pc/nec_pc88.dat",
+        "PC-98 - NEC PC-98": "./data/pc/nec_pc98.dat"
     },
     "Others": {
-        "Arduboy": "./data/others/arduboy.dat"
+        "Arduboy": "./data/others/arduboy.dat",
+        "J2ME - Java 2 Micro Edition": "./data/others/j2me.dat"
     }
 }
 
