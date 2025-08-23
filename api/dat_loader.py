@@ -2,7 +2,6 @@ dat_files = {
     "Nintendo": {
         "NES - Nintendo Entertainment System": "./data/nintendo/nes.dat",
         "SNES - Super Nintendo Entertainment System": "./data/nintendo/snes.dat",
-        "Famicom - Family Computer": "./data/nintendo/famicom.dat",
         "FDS - Famicom Disk System": "./data/nintendo/fds.dat",
         "GB - Game Boy": "./data/nintendo/gb.dat",
         "GBC - Game Boy Color": "./data/nintendo/gbc.dat",
@@ -16,13 +15,10 @@ dat_files = {
         "Master System": "./data/sega/master_system.dat",
         "Genesis / Mega Drive": "./data/sega/genesis.dat",
         "Game Gear": "./data/sega/game_gear.dat",
-        "Sega CD": "./data/sega/sega_cd.dat",
         "32X": "./data/sega/32x.dat",
-        "Saturn": "./data/sega/saturn.dat",
+        "Pico": "./data/sega/pico.dat"
     },
     "SNK": {
-        "Neo Geo": "./data/snk/neogeo.dat",
-        "Neo Geo CD": "./data/snk/neogeo_cd.dat",
         "NGP - Neo Geo Pocket": "./data/snk/ngp.dat",
         "NGPC - Neo Geo Pocket Color": "./data/snk/ngpc.dat"
     },
@@ -36,30 +32,14 @@ dat_files = {
         "5200": "./data/atari/5200.dat",
         "7800": "./data/atari/7800.dat",
         "Atari 8-bit": "./data/atari/8bit.dat",
+        "Atari ST": "./data/atari/st.dat",
         "Atari Lynx": "./data/atari/lynx.dat",
-        "Atari ST": "./data/atari/st.dat"
+        "Atari Jaguar": "./data/atari/jaguar.dat"
     },
     "PC": {
-        "PC Engine / TurboGrafx-16": "./data/pc/pc_engine.dat",
-        "PC Engine CD / TurboGrafx-CD": "./data/pc/pc_engine_cd.dat",
-        "SuperGrafx": "./data/pc/supergrafx.dat",
-        "Commodore 64": "./data/pc/c64.dat",
-        "Commodore VIC-20": "./data/pc/vic20.dat",
-        "Commodore Amiga": "./data/pc/amiga.dat",
-        "Apple I": "./data/pc/apple1.dat",
-        "Apple II": "./data/pc/apple2.dat",
-        "Apple II GS": "./data/pc/apple2gs.dat",
-        "MSX": "./data/pc/msx.dat",
-        "MSX2": "./data/pc/msx2.dat",
-        "ZX Spectrum": "./data/pc/zx_spectrum.dat",
-        "Amstrad CPC": "./data/pc/amstrad/cpc.dat"
+        "Apple II": "./data/pc/apple2.dat"
     },
-    "Others": {                
-        "WonderSwan": "./data/others/wonderswan.dat",
-        "WonderSwan Color": "./data/others/wonderswan_color.dat",
-        "3DO": "./data/others/3do.dat",
-        "ColecoVision": "./data/others/colecovision.dat",
-        "Intellivision": "./data/others/intellivision.dat",
+    "Others": {
         "Arduboy": "./data/others/arduboy.dat"
     }
 }
